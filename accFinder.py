@@ -58,20 +58,20 @@ def getRustPrices():
 first = True
 accOldAverage = 99999
 
-def findAccount(val, accAmmount):
+def findAccount(val, accAmount):
     global first, accOldAverage
     priceList = getRustPrices()
-    if accAmmount == 1:
+    if accAmount == 1:
         if priceList[0] >= val:
             print("No Cheap Accounts.")
             print("Trying Again......")
             sleep(30)
             findAccount(val, 1)
-    if accAmmount > 1:
+    if accAmount > 1:
         accTotal = 0
-        for i in range(accAmmount):
+        for i in range(accAmount):
             accTotal = accTotal + priceList[i]
-        accAverage = accTotal / accAmmount
+        accAverage = accTotal / accAmount
         print("Account Average: {}.".format(accAverage))
         if first == True:
             first = False
@@ -79,10 +79,10 @@ def findAccount(val, accAmmount):
             print("Account Average Set")
         if accOldAverage >= accAverage:
             print("Old Account Average: {}.".format(accOldAverage))
-            print("No new accounts in range ({}).".format(accAmmount))
+            print("No new accounts in range ({}).".format(accAmount))
             print("Trying Again......")
             sleep(30)
-            findAccount(val, accAmmount)
+            findAccount(val, accAmount)
     winsound.Beep(600 , 200)
     sleep(0.1)
     winsound.Beep(600 , 200)
@@ -95,5 +95,5 @@ if accType == "Y":
     val = int(input("Enter your min price: "))
     findAccount(val, 1)
 else:
-    accAmmount = int(input("Number of accounts:"))
-    findAccount(0, accAmmount)
+    accAmount = int(input("Number of accounts:"))
+    findAccount(0, accAmount)
